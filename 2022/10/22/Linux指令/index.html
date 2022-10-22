@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/icon/favicon.ico">
+    
+    
+        <link rel="icon" type="image/png" sizes="16x16" href="/icon/favicon-16x16.png">
+    
+    
+        <link rel="icon" type="image/png" sizes="32x32" href="/icon/favicon-32x32.png">
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/icon/apple-touch-icon.png">
+    
+    
+        <link rel="mask-icon" href="/safari-pinned-tab.svg">
+    
+
+
+    <!-- meta -->
+
+
+<title>Linux常用指令记录 | 一喵之言</title>
+
+
+    <meta name="keywords" content="Linux/Ubuntu, 一喵之言">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="内容太多了，一时记不住啊啊啊，先写下来qwq 基础部分tab键指令自动补全，按两次，显示所有可能指令 上下方向键使用历史中用过的指令，按一次向上键返回上一条，向下键返回下一条 复制与粘贴区别于windows系统 shift+Ctrl+C 和 shift+Ctrl+V Ctrl+C 强制终止命令执行一级指令，无论何时都能够使用 注意区分于复制！ 帮助指令man获得具体指令的帮助信息 空格退出 man">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常用指令记录">
+<meta property="og:url" content="http://wuyn20.github.io/2022/10/22/Linux%E6%8C%87%E4%BB%A4/">
+<meta property="og:site_name" content="一喵之言">
+<meta property="og:description" content="内容太多了，一时记不住啊啊啊，先写下来qwq 基础部分tab键指令自动补全，按两次，显示所有可能指令 上下方向键使用历史中用过的指令，按一次向上键返回上一条，向下键返回下一条 复制与粘贴区别于windows系统 shift+Ctrl+C 和 shift+Ctrl+V Ctrl+C 强制终止命令执行一级指令，无论何时都能够使用 注意区分于复制！ 帮助指令man获得具体指令的帮助信息 空格退出 man">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-10-22T08:22:26.000Z">
+<meta property="article:modified_time" content="2022-10-22T08:22:26.444Z">
+<meta property="article:author" content="ShellyWu">
+<meta property="article:tag" content="Linux&#x2F;Ubuntu">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" >
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/dark.css" media="none">
+        
+    
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+        <div id="app" tabindex="-1">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">一喵之言</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="https://wuyn20.github.io" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="https://wuyn20.github.io/2022/10/15/本喵的告示牌/" class="navbar-menu button">告示牌</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="https://wuyn20.github.io" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="https://wuyn20.github.io/2022/10/15/本喵的告示牌/" class="dropdown-menu button">告示牌</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        Linux常用指令记录
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/10/" class="post-meta__date button">2022-10-22</a>
+        
+    <span class="separate-dot"></span><a href="/categories/%E7%A0%81%E5%86%9C%E5%96%B5/" class="button">码农喵</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+        | 本篇文章共<span class="post-count">1.5k字</span>，预计阅读<span class="post-count">5分钟</span>
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86"><span class="toc-text">基础部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tab%E9%94%AE"><span class="toc-text">tab键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%B9%E5%90%91%E9%94%AE"><span class="toc-text">上下方向键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6%E4%B8%8E%E7%B2%98%E8%B4%B4"><span class="toc-text">复制与粘贴</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-C-%E5%BC%BA%E5%88%B6%E7%BB%88%E6%AD%A2%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-text">Ctrl+C 强制终止命令执行</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%AE%E5%8A%A9%E6%8C%87%E4%BB%A4"><span class="toc-text">帮助指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#man"><span class="toc-text">man</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#help"><span class="toc-text">help</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%B1%BB"><span class="toc-text">文件目录类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pwd-%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6%E7%9A%84%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84"><span class="toc-text">pwd 显示文件的绝对路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ls-%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF%E6%98%BE%E7%A4%BA"><span class="toc-text">ls 文件信息显示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cd-%E5%AE%9A%E4%BD%8D%E7%BB%9D%E5%AF%B9%E6%88%96%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84"><span class="toc-text">cd 定位绝对或相对路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mkdir-%E5%88%9B%E5%BB%BA%E7%9B%AE%E5%BD%95"><span class="toc-text">mkdir 创建目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rmdir-%E5%88%A0%E9%99%A4%E7%9B%AE%E5%BD%95"><span class="toc-text">rmdir 删除目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#touch-%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6"><span class="toc-text">touch 创建文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cp-%E6%8B%B7%E8%B4%9D"><span class="toc-text">cp 拷贝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rm-%E7%A7%BB%E9%99%A4"><span class="toc-text">rm 移除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mv-%E7%A7%BB%E5%8A%A8%E6%88%96%E9%87%8D%E5%91%BD%E5%90%8D"><span class="toc-text">mv 移动或重命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cat-%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="toc-text">cat 查看文件内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#more-%E6%96%87%E4%BB%B6%E6%9F%A5%E7%9C%8B%E5%91%BD%E4%BB%A4"><span class="toc-text">more 文件查看命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#less-%E5%88%86%E5%B1%8F%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="toc-text">less 分屏查看文件内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#clear-%E6%B8%85%E5%B1%8F"><span class="toc-text">clear 清屏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#echo-%E8%BE%93%E5%87%BA%E5%86%85%E5%AE%B9%E5%88%B0%E6%8E%A7%E5%88%B6%E5%8F%B0"><span class="toc-text">echo 输出内容到控制台</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#head-%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6%E5%BC%80%E5%A4%B4%E9%83%A8%E5%88%86"><span class="toc-text">head 显示文件开头部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tail-%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6%E5%B0%BE%E9%83%A8%E5%86%85%E5%AE%B9"><span class="toc-text">tail 显示文件尾部内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gt-%E8%BE%93%E5%87%BA%E9%87%8D%E5%AE%9A%E5%90%91-%E5%92%8C-gt-gt-%E8%BF%BD%E5%8A%A0"><span class="toc-text">&gt;输出重定向 和 &gt;&gt;追加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ln-%E8%BD%AF%E9%93%BE%E6%8E%A5%EF%BC%8C%E7%AC%A6%E5%8F%B7%E9%93%BE%E6%8E%A5%EF%BC%88%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F%EF%BC%89"><span class="toc-text">ln 软链接，符号链接（快捷方式）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#history-%E6%9F%A5%E7%9C%8B%E5%B7%B2%E7%BB%8F%E6%89%A7%E8%A1%8C%E8%BF%87%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="toc-text">history 查看已经执行过的命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E7%B1%BB%E6%8C%87%E4%BB%A4"><span class="toc-text">时间日期类指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#date-%E6%98%BE%E7%A4%BA%E5%BD%93%E5%89%8D%E6%97%A5%E6%9C%9F"><span class="toc-text">date 显示当前日期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cal"><span class="toc-text">cal</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A0%E6%9F%A5%E6%89%BE%E7%B1%BB"><span class="toc-text">搜素查找类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#find-%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95"><span class="toc-text">find 查找文件或目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#locate-%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%BD%8D%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84"><span class="toc-text">locate 快速定位文件路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#which-%E6%9F%A5%E7%9C%8B%E6%8C%87%E4%BB%A4%E6%89%80%E5%9C%A8%E7%9B%AE%E5%BD%95"><span class="toc-text">which 查看指令所在目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grep-%E8%BF%87%E6%BB%A4%E6%9F%A5%E6%89%BE"><span class="toc-text">grep 过滤查找</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%A7%A3%E5%8E%8B"><span class="toc-text">压缩和解压</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gzip-x2F-gunzip"><span class="toc-text">gzip&#x2F;gunzip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#zip-x2F-unzip"><span class="toc-text">zip&#x2F;unzip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tar-%E6%89%93%E5%8C%85%E6%8C%87%E4%BB%A4"><span class="toc-text">tar 打包指令</span></a></li></ol></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">文章目录</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86"><span class="toc-text">基础部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tab%E9%94%AE"><span class="toc-text">tab键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%B9%E5%90%91%E9%94%AE"><span class="toc-text">上下方向键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6%E4%B8%8E%E7%B2%98%E8%B4%B4"><span class="toc-text">复制与粘贴</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-C-%E5%BC%BA%E5%88%B6%E7%BB%88%E6%AD%A2%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-text">Ctrl+C 强制终止命令执行</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%AE%E5%8A%A9%E6%8C%87%E4%BB%A4"><span class="toc-text">帮助指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#man"><span class="toc-text">man</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#help"><span class="toc-text">help</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%B1%BB"><span class="toc-text">文件目录类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pwd-%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6%E7%9A%84%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84"><span class="toc-text">pwd 显示文件的绝对路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ls-%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF%E6%98%BE%E7%A4%BA"><span class="toc-text">ls 文件信息显示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cd-%E5%AE%9A%E4%BD%8D%E7%BB%9D%E5%AF%B9%E6%88%96%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84"><span class="toc-text">cd 定位绝对或相对路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mkdir-%E5%88%9B%E5%BB%BA%E7%9B%AE%E5%BD%95"><span class="toc-text">mkdir 创建目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rmdir-%E5%88%A0%E9%99%A4%E7%9B%AE%E5%BD%95"><span class="toc-text">rmdir 删除目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#touch-%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6"><span class="toc-text">touch 创建文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cp-%E6%8B%B7%E8%B4%9D"><span class="toc-text">cp 拷贝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rm-%E7%A7%BB%E9%99%A4"><span class="toc-text">rm 移除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mv-%E7%A7%BB%E5%8A%A8%E6%88%96%E9%87%8D%E5%91%BD%E5%90%8D"><span class="toc-text">mv 移动或重命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cat-%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="toc-text">cat 查看文件内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#more-%E6%96%87%E4%BB%B6%E6%9F%A5%E7%9C%8B%E5%91%BD%E4%BB%A4"><span class="toc-text">more 文件查看命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#less-%E5%88%86%E5%B1%8F%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="toc-text">less 分屏查看文件内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#clear-%E6%B8%85%E5%B1%8F"><span class="toc-text">clear 清屏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#echo-%E8%BE%93%E5%87%BA%E5%86%85%E5%AE%B9%E5%88%B0%E6%8E%A7%E5%88%B6%E5%8F%B0"><span class="toc-text">echo 输出内容到控制台</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#head-%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6%E5%BC%80%E5%A4%B4%E9%83%A8%E5%88%86"><span class="toc-text">head 显示文件开头部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tail-%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6%E5%B0%BE%E9%83%A8%E5%86%85%E5%AE%B9"><span class="toc-text">tail 显示文件尾部内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gt-%E8%BE%93%E5%87%BA%E9%87%8D%E5%AE%9A%E5%90%91-%E5%92%8C-gt-gt-%E8%BF%BD%E5%8A%A0"><span class="toc-text">&gt;输出重定向 和 &gt;&gt;追加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ln-%E8%BD%AF%E9%93%BE%E6%8E%A5%EF%BC%8C%E7%AC%A6%E5%8F%B7%E9%93%BE%E6%8E%A5%EF%BC%88%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F%EF%BC%89"><span class="toc-text">ln 软链接，符号链接（快捷方式）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#history-%E6%9F%A5%E7%9C%8B%E5%B7%B2%E7%BB%8F%E6%89%A7%E8%A1%8C%E8%BF%87%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="toc-text">history 查看已经执行过的命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E7%B1%BB%E6%8C%87%E4%BB%A4"><span class="toc-text">时间日期类指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#date-%E6%98%BE%E7%A4%BA%E5%BD%93%E5%89%8D%E6%97%A5%E6%9C%9F"><span class="toc-text">date 显示当前日期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cal"><span class="toc-text">cal</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A0%E6%9F%A5%E6%89%BE%E7%B1%BB"><span class="toc-text">搜素查找类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#find-%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95"><span class="toc-text">find 查找文件或目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#locate-%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%BD%8D%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84"><span class="toc-text">locate 快速定位文件路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#which-%E6%9F%A5%E7%9C%8B%E6%8C%87%E4%BB%A4%E6%89%80%E5%9C%A8%E7%9B%AE%E5%BD%95"><span class="toc-text">which 查看指令所在目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grep-%E8%BF%87%E6%BB%A4%E6%9F%A5%E6%89%BE"><span class="toc-text">grep 过滤查找</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%A7%A3%E5%8E%8B"><span class="toc-text">压缩和解压</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gzip-x2F-gunzip"><span class="toc-text">gzip&#x2F;gunzip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#zip-x2F-unzip"><span class="toc-text">zip&#x2F;unzip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tar-%E6%89%93%E5%8C%85%E6%8C%87%E4%BB%A4"><span class="toc-text">tar 打包指令</span></a></li></ol></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>内容太多了，一时记不住啊啊啊，先写下来qwq</p>
+<h2 id="基础部分"><a href="#基础部分" class="headerlink" title="基础部分"></a>基础部分</h2><h3 id="tab键"><a href="#tab键" class="headerlink" title="tab键"></a>tab键</h3><p>指令自动补全，按两次，显示所有可能指令</p>
+<h3 id="上下方向键"><a href="#上下方向键" class="headerlink" title="上下方向键"></a>上下方向键</h3><p>使用历史中用过的指令，按一次向上键返回上一条，向下键返回下一条</p>
+<h3 id="复制与粘贴"><a href="#复制与粘贴" class="headerlink" title="复制与粘贴"></a>复制与粘贴</h3><p>区别于windows系统 shift+Ctrl+C 和 shift+Ctrl+V</p>
+<h3 id="Ctrl-C-强制终止命令执行"><a href="#Ctrl-C-强制终止命令执行" class="headerlink" title="Ctrl+C 强制终止命令执行"></a>Ctrl+C 强制终止命令执行</h3><p>一级指令，无论何时都能够使用 <strong>注意区分于复制！</strong></p>
+<h2 id="帮助指令"><a href="#帮助指令" class="headerlink" title="帮助指令"></a>帮助指令</h2><h3 id="man"><a href="#man" class="headerlink" title="man"></a>man</h3><p>获得具体指令的帮助信息</p>
+<p>空格退出</p>
+<p><code>man ls</code></p>
+<h3 id="help"><a href="#help" class="headerlink" title="help"></a>help</h3><p>获得shell内置命令的帮助信息，英文显示</p>
+<p><code>help cd</code></p>
+<h2 id="文件目录类"><a href="#文件目录类" class="headerlink" title="文件目录类"></a>文件目录类</h2><h3 id="pwd-显示文件的绝对路径"><a href="#pwd-显示文件的绝对路径" class="headerlink" title="pwd 显示文件的绝对路径"></a>pwd 显示文件的绝对路径</h3><h3 id="ls-文件信息显示"><a href="#ls-文件信息显示" class="headerlink" title="ls 文件信息显示"></a>ls 文件信息显示</h3><ul>
+<li><p>-a 列出所有文件，包括以.开头的隐藏文件</p>
+</li>
+<li><p>-l 单列显示</p>
+</li>
+<li><p>-h human以人类方便理解的方式显示</p>
+</li>
+</ul>
+<p>选项可以组合使用</p>
+<h3 id="cd-定位绝对或相对路径"><a href="#cd-定位绝对或相对路径" class="headerlink" title="cd 定位绝对或相对路径"></a>cd 定位绝对或相对路径</h3><p><code>cd ..</code>回到上一级目录</p>
+<p><code>cd ~</code>或者<code>cd</code>回到家目录（<code>who am i</code> 可以确认此刻身份）</p>
+<p>绝对路径：<code>cd /root</code> 切换到root目录位置</p>
+<p>相对路径：<code>cd ../../root</code></p>
+<h3 id="mkdir-创建目录"><a href="#mkdir-创建目录" class="headerlink" title="mkdir 创建目录"></a>mkdir 创建目录</h3><p>一级目录：<code>mkdir /home/wuyn20</code></p>
+<p>一次性创建多级目录：<code>mkdir -p /home/wuyn20/linux</code></p>
+<h3 id="rmdir-删除目录"><a href="#rmdir-删除目录" class="headerlink" title="rmdir 删除目录"></a>rmdir 删除目录</h3><p><code>rmdir /home/wuyn20/linux</code> 删除空目录</p>
+<p><code>rm -rf /home/wuyn20</code> 强制删除 <strong>-f慎重使用！</strong></p>
+<h3 id="touch-创建文件"><a href="#touch-创建文件" class="headerlink" title="touch 创建文件"></a>touch 创建文件</h3><p><code>touch hello.txt</code></p>
+<h3 id="cp-拷贝"><a href="#cp-拷贝" class="headerlink" title="cp 拷贝"></a>cp 拷贝</h3><p><code>cp [选项] 源 目标目录</code></p>
+<p><code>cp hello.txt /home/wuyn20/linux</code> 拷贝单个文件</p>
+<p><code>cp -r /home/wuyn20 /new</code> 递归拷贝整个文件夹</p>
+<p><code>\cp -r /home/wuyn20 /new</code> 强制覆盖不提示 </p>
+<h3 id="rm-移除"><a href="#rm-移除" class="headerlink" title="rm 移除"></a>rm 移除</h3><p><code>rm hello.txt</code> 删除单个文件</p>
+<p><code>rm -r /home/wuyn20/linux</code> 递归删除整个文件夹</p>
+<p><code>rm -f /home/wuyn20/linux</code> 强制删除不提示</p>
+<h3 id="mv-移动或重命名"><a href="#mv-移动或重命名" class="headerlink" title="mv 移动或重命名"></a>mv 移动或重命名</h3><p><code>mv oldNmaeFile newNameFile</code> 重命名</p>
+<p><code>mv /temp/movefile /targetFolder</code> 移动、剪切文件</p>
+<p><code>mv hello.txt /home/wuyn20/linux/test.txt</code> 移动并且重命名</p>
+<p><code>mv /new /home/wuyn20/linux</code> 移动文件夹，如果linux不存在就是移动并且重命名了</p>
+<h3 id="cat-查看文件内容"><a href="#cat-查看文件内容" class="headerlink" title="cat 查看文件内容"></a>cat 查看文件内容</h3><p><code>cat hello.txt</code></p>
+<ul>
+<li>-n显示行号</li>
+<li>加上管道命令 |more 将前面得到的结果交给下一个命令进行处理</li>
+</ul>
+<p><code>cat -n /home/wuyn20/linux/test.txt | more</code> 后续进行交互</p>
+<h3 id="more-文件查看命令"><a href="#more-文件查看命令" class="headerlink" title="more 文件查看命令"></a>more 文件查看命令</h3><ul>
+<li>space空格 向下翻页</li>
+<li>enter 向下翻一行</li>
+<li>q 立刻离开more，不再显示该文件内容</li>
+<li>Ctrl+F 向下滚动一屏</li>
+<li>Ctrl+B 返回上一屏</li>
+<li>&#x3D;输出当前行的行号</li>
+<li>:f 输出文件名和当前行行号</li>
+</ul>
+<p><code>more -n /test.txt</code></p>
+<h3 id="less-分屏查看文件内容"><a href="#less-分屏查看文件内容" class="headerlink" title="less 分屏查看文件内容"></a>less 分屏查看文件内容</h3><ul>
+<li>空白键&#x2F;pagedown 向下翻页</li>
+<li>pageup 向上翻页</li>
+<li>&#x2F;字串 或 ？字串 搜索功能 n向下 N向上</li>
+<li>q 离开less程序</li>
+</ul>
+<p><code>less /test.txt</code></p>
+<h3 id="clear-清屏"><a href="#clear-清屏" class="headerlink" title="clear 清屏"></a>clear 清屏</h3><h3 id="echo-输出内容到控制台"><a href="#echo-输出内容到控制台" class="headerlink" title="echo 输出内容到控制台"></a>echo 输出内容到控制台</h3><p><code>echo $PATH $HOSTNAME</code> 输出环境变量<br><code>echo &quot;Hello World&quot;</code></p>
+<h3 id="head-显示文件开头部分"><a href="#head-显示文件开头部分" class="headerlink" title="head 显示文件开头部分"></a>head 显示文件开头部分</h3><p>默认显示文件前十行<br><code>head -n 5 test.txt</code> 查看文件的前五行代码</p>
+<h3 id="tail-显示文件尾部内容"><a href="#tail-显示文件尾部内容" class="headerlink" title="tail 显示文件尾部内容"></a>tail 显示文件尾部内容</h3><p>默认显示末尾十行<br><code>tail -n 5 test.txt</code> 查看最后五行<br><code>tail -f test.txt</code> 实时追踪文件更新</p>
+<h3 id="gt-输出重定向-和-gt-gt-追加"><a href="#gt-输出重定向-和-gt-gt-追加" class="headerlink" title="&gt;输出重定向 和 &gt;&gt;追加"></a>&gt;输出重定向 和 &gt;&gt;追加</h3><p><code>echo &quot;hello&quot; &gt; /home/mydate.txt</code> 覆盖原先内容<br><code>echo &quot;world&quot; &gt;&gt; /home/mydate.txt</code> 追加内容到文件末尾<br><code>ls -l /home &gt; /home/info.txt</code> 列表内容写入文件，如果文件不存在，则创建<br><code>ls -al /home &gt;&gt; /home/info.txt</code> 列表内容追加到文件中<br><code>cat linux.txt &gt; newfile.txt</code> 文件内容覆盖到另一文件</p>
+<h3 id="ln-软链接，符号链接（快捷方式）"><a href="#ln-软链接，符号链接（快捷方式）" class="headerlink" title="ln 软链接，符号链接（快捷方式）"></a>ln 软链接，符号链接（快捷方式）</h3><p><code>ln -s /root/ myroot</code> 在home目录创建软链接，指向root</p>
+<p><code>ls -ll myroot</code> 对myroot软链接进行信息显示，内容和root相同</p>
+<p><code>rm /home/myroot</code> 删除和删除文件的操作相同</p>
+<h3 id="history-查看已经执行过的命令"><a href="#history-查看已经执行过的命令" class="headerlink" title="history 查看已经执行过的命令"></a>history 查看已经执行过的命令</h3><p>默认所有的指令</p>
+<p><code>history 10</code> 显示最近使用过的10个指令</p>
+<p><code>!5</code> 执行历史编号为5的指令</p>
+<h2 id="时间日期类指令"><a href="#时间日期类指令" class="headerlink" title="时间日期类指令"></a>时间日期类指令</h2><h3 id="date-显示当前日期"><a href="#date-显示当前日期" class="headerlink" title="date 显示当前日期"></a>date 显示当前日期</h3><p><code>date</code> 显示当前时间</p>
+<p><code>date +%Y</code> 显示当前年份</p>
+<p><code>date +%m</code> 显示当前月份</p>
+<p><code>date +%d</code> 显示当前日子</p>
+<p><code>date &quot;+%Y-%m-%d %H:%M:%S&quot;</code> 按指定格式显示年月日时分秒</p>
+<p><code>date &quot;+%Y-%m-%d&quot;</code>年月日</p>
+<p><code>date -s 字符串时间</code> 设置日期</p>
+<p><code>date -s &quot;2020- 11- 03 20:02:10&quot;</code> 设置日期</p>
+<h3 id="cal"><a href="#cal" class="headerlink" title="cal"></a>cal</h3><p>显示当前月的日历</p>
+<p><code>cal 2022</code> 显示2022年日历</p>
+<h2 id="搜素查找类"><a href="#搜素查找类" class="headerlink" title="搜素查找类"></a>搜素查找类</h2><h3 id="find-查找文件或目录"><a href="#find-查找文件或目录" class="headerlink" title="find 查找文件或目录"></a>find 查找文件或目录</h3><p><code>find [搜索范围] [选项]</code></p>
+<ul>
+<li>name 按照指定的文件名查找模式查找文件</li>
+</ul>
+<p><code>find /home -name hello.txt</code></p>
+<ul>
+<li>user 按照属于指定用户名所有文件</li>
+</ul>
+<p><code>find /opt -user shelly</code></p>
+<ul>
+<li>size 按照指定的文件大小查找文件 +大于 -小于 不写 等于；单位k，M，G</li>
+</ul>
+<p><code>find / -size +200M</code></p>
+<h3 id="locate-快速定位文件路径"><a href="#locate-快速定位文件路径" class="headerlink" title="locate 快速定位文件路径"></a>locate 快速定位文件路径</h3><p>基于事先建立的文件名及路径数据库进行查询，无需遍历整个文件系统，速度较快。注意第一次查询前必须先使用updatedb指令创建locate数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">updatedb</span><br><span class="line">locate hello.txt</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="which-查看指令所在目录"><a href="#which-查看指令所在目录" class="headerlink" title="which 查看指令所在目录"></a>which 查看指令所在目录</h3><p><code>which ls</code> 显示ls所在目录</p>
+<h3 id="grep-过滤查找"><a href="#grep-过滤查找" class="headerlink" title="grep 过滤查找"></a>grep 过滤查找</h3><p>常与管道符号结合使用</p>
+<ul>
+<li>-n 显示匹配行及行号</li>
+<li>-i 忽略字母大小写</li>
+</ul>
+<p><code>cat /home/shelly/hello.txt | grep -n &quot;yes&quot;</code> 查找文件中的yes并显示行号</p>
+<p>另一种方法：</p>
+<p><code>grep -n &quot;yes&quot; /home/shelly/hello.txt</code></p>
+<h2 id="压缩和解压"><a href="#压缩和解压" class="headerlink" title="压缩和解压"></a>压缩和解压</h2><h3 id="gzip-x2F-gunzip"><a href="#gzip-x2F-gunzip" class="headerlink" title="gzip&#x2F;gunzip"></a>gzip&#x2F;gunzip</h3><p>只能将文件压缩为*.gz文件</p>
+<h3 id="zip-x2F-unzip"><a href="#zip-x2F-unzip" class="headerlink" title="zip&#x2F;unzip"></a>zip&#x2F;unzip</h3><p>压缩文件或者文件夹</p>
+<p><code>zip -r shelly.zip /home/shelly</code> 将shelly文件夹压缩</p>
+<p><code>unzip -d /home/wuyn20/linux shelly.zip</code></p>
+<h3 id="tar-打包指令"><a href="#tar-打包指令" class="headerlink" title="tar 打包指令"></a>tar 打包指令</h3><p>打包生成*.tar.gz文件</p>
+<ul>
+<li>-c 产生.tar打包文件</li>
+<li>-v 显示详细信息</li>
+<li>-f 指定压缩后的文件名</li>
+<li>-z 打包同时压缩</li>
+<li>-x 解包.tar文件</li>
+</ul>
+<p><code>tar -zcvf onemeow.tar.gz /home/wuyn20/hello.txt /home/shelly/</code></p>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>本文作者：</strong>ShellyWu
+        </p>
+        <p>
+            <strong>
+                本文链接：
+            </strong>
+            <a href="http://wuyn20.github.io/2022/10/22/Linux%E6%8C%87%E4%BB%A4/">http://wuyn20.github.io/2022/10/22/Linux%E6%8C%87%E4%BB%A4/</a>
+        </p>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>更新于 2022-10-22</p></div> 
+    <div class="post-entry__tags"><a href="/tags/Linux-Ubuntu/" class="post-tags__link button"># Linux/Ubuntu</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/10/21/%E6%9C%AC%E6%96%87%E4%B8%93%E6%B2%BB%E4%B8%8D%E5%BC%80%E5%BF%83/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            下一篇
+                        </div>
+                        <div class="nav__title">
+                            本文专治不开心
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+    <div class="post__comments post__with-toc content-card" id="comment">
+        
+    <h4>评论</h4>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="SOHUCS" sid="2022/10/22/Linux指令/"></div>
+
+    
+    
+
+
+    </div>
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2022&nbsp;-&nbsp;2022 <a href="/">一喵之言</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('false'),
+            auto_fancybox = Boolean('true')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+    
+
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script>
+        function loadComment() {
+            (function(){
+                var appid = 'cywkggnQP';
+                var conf = '376b1244a9947c276b9c9d9e3f955b59';
+                var width = window.innerWidth || document.documentElement.clientWidth;
+                if (width < 960) {
+                    window.document.write('<script id="changyan_mobile_js" charset="utf-8" defer crossorigin="anonymous" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+                } else {
+                    var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if (typeof a==="function"){if (window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if (e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})});
+                }
+            })();
+        }
+    
+        var runningOnBrowser = typeof window !== "undefined";
+        var isBot = runningOnBrowser && !("onscroll" in window) || typeof navigator !== "undefined" && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent);
+        var supportsIntersectionObserver = runningOnBrowser && "IntersectionObserver" in window;
+    
+        setTimeout(function () {
+            if (!isBot && supportsIntersectionObserver) {
+                var comment_observer = new IntersectionObserver(function(entries) {
+                    if (entries[0].isIntersecting) {
+                        loadComment();
+                        comment_observer.disconnect();
+                    }
+                }, { threshold: [0] });
+                comment_observer.observe(document.getElementById('comment'));
+            } else {
+                loadComment();
+            }
+        }, 1);
+    </script>
+
+
+    
+    
+    
+
+
+
+    </body>
+</html>
