@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/icon/favicon.ico">
+    
+    
+        <link rel="icon" type="image/png" sizes="16x16" href="/icon/favicon-16x16.png">
+    
+    
+        <link rel="icon" type="image/png" sizes="32x32" href="/icon/favicon-32x32.png">
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/icon/apple-touch-icon.png">
+    
+    
+        <link rel="mask-icon" href="/safari-pinned-tab.svg">
+    
+
+
+    <!-- meta -->
+
+
+<title>C++学习记录 | 一喵之言</title>
+
+
+    <meta name="keywords" content="一喵之言">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="C++ 面向过程因为已经学习过C语言了，这里主要记录C++和C语言的不同之处。 输入输出流cin和cout函数的基本用法没有什么好说的，注意区分一下尖括号的方向。 cin读取内容时会在空格，回车，tab处停止，不读取；如果希望读取这些内容的话，考虑使用getline读取整行字符串。 输出方面，个人认为cout不如printf在特定位置填入变量方便，不过也有自己的特点。要实现左右对齐，填充之类的功能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++学习记录">
+<meta property="og:url" content="http://wuyn20.github.io/2022/11/07/Cpp%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BC%96%E7%A8%8B/">
+<meta property="og:site_name" content="一喵之言">
+<meta property="og:description" content="C++ 面向过程因为已经学习过C语言了，这里主要记录C++和C语言的不同之处。 输入输出流cin和cout函数的基本用法没有什么好说的，注意区分一下尖括号的方向。 cin读取内容时会在空格，回车，tab处停止，不读取；如果希望读取这些内容的话，考虑使用getline读取整行字符串。 输出方面，个人认为cout不如printf在特定位置填入变量方便，不过也有自己的特点。要实现左右对齐，填充之类的功能">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-07T05:13:59.000Z">
+<meta property="article:modified_time" content="2022-11-07T17:23:15.453Z">
+<meta property="article:author" content="ShellyWu">
+<meta property="article:tag" content="一喵之言">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" >
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/dark.css" media="none">
+        
+    
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+        <div id="app" tabindex="-1">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">一喵之言</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="https://wuyn20.github.io" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="https://wuyn20.github.io/2022/10/15/本喵的告示牌/" class="navbar-menu button">告示牌</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="https://wuyn20.github.io" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="https://wuyn20.github.io/2022/10/15/本喵的告示牌/" class="dropdown-menu button">告示牌</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        C++学习记录
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/11/" class="post-meta__date button">2022-11-07</a>
+        
+    <span class="separate-dot"></span><a href="/categories/%E7%A0%81%E5%86%9C%E5%96%B5/" class="button">码农喵</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+        | 本篇文章共<span class="post-count">925字</span>，预计阅读<span class="post-count">3分钟</span>
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#C-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B"><span class="toc-text">C++ 面向过程</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%B5%81"><span class="toc-text">输入输出流</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E5%88%A4%E6%96%AD%E9%97%AE%E9%A2%98"><span class="toc-text">浮点数的判断问题</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#new%E4%B8%8Edelete"><span class="toc-text">new与delete</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-text">c++ 面向对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB-amp-%E5%AF%B9%E8%B1%A1"><span class="toc-text">类&amp;对象</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#C-%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">C++类的定义</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">对象的定义</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B"><span class="toc-text">C++ 高级教程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%92%8C%E6%B5%81"><span class="toc-text">文件和流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-text">异常处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98"><span class="toc-text">动态内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4"><span class="toc-text">命名空间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF"><span class="toc-text">模板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-text">多线程</span></a></li></ol></li></ol></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">文章目录</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#C-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B"><span class="toc-text">C++ 面向过程</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%B5%81"><span class="toc-text">输入输出流</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E5%88%A4%E6%96%AD%E9%97%AE%E9%A2%98"><span class="toc-text">浮点数的判断问题</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#new%E4%B8%8Edelete"><span class="toc-text">new与delete</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-text">c++ 面向对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB-amp-%E5%AF%B9%E8%B1%A1"><span class="toc-text">类&amp;对象</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#C-%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">C++类的定义</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">对象的定义</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B"><span class="toc-text">C++ 高级教程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%92%8C%E6%B5%81"><span class="toc-text">文件和流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-text">异常处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98"><span class="toc-text">动态内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4"><span class="toc-text">命名空间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF"><span class="toc-text">模板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-text">多线程</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <h2 id="C-面向过程"><a href="#C-面向过程" class="headerlink" title="C++ 面向过程"></a>C++ 面向过程</h2><p>因为已经学习过C语言了，这里主要记录C++和C语言的不同之处。</p>
+<h6 id="输入输出流"><a href="#输入输出流" class="headerlink" title="输入输出流"></a>输入输出流</h6><p>cin和cout函数的基本用法没有什么好说的，注意区分一下尖括号的方向。</p>
+<p>cin读取内容时会在空格，回车，tab处停止，不读取；如果希望读取这些内容的话，考虑使用getline读取整行字符串。</p>
+<p>输出方面，个人认为cout不如printf在特定位置填入变量方便，不过也有自己的特点。要实现左右对齐，填充之类的功能的话，需要引用iomanip库，其中常用的函数有：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">left 左对齐（默认右对齐）</span><br><span class="line">fixed 以普通小数形式输出浮点数</span><br><span class="line">setw()指定输出宽度为几个字符</span><br><span class="line">setprecision()设置输出浮点数的精度</span><br><span class="line">setfill()指定用特定字符填充空白处</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，一旦设定了填充字符，之后的输出流都会默认用同样的格式输出，要恢复原来的话还得再设定一次。</p>
+<h6 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h6><p>C语言的字符串把我搞得很痛苦…谢天谢地，好在C++有了字符串的专用变量string以及它自己的同名库，处理问题可以轻松不少。不需要先动态分配内存了，开心。不过同样需要注意字符串末尾的’\0’不能忽略。但是strlen这样的函数是不会实际考虑末尾’\0’的存在的，它返回的是有效元素的个数（考虑空格）。</p>
+<p>另外还有一个向量函数vector也很有意思，可以实现一边读取一边存储的功能。优点是省事，缺点就是运行太慢太占内存了…至少OJ题是不允许引用的实际上。这样来说可能不如自己写函数实现。</p>
+<h6 id="浮点数的判断问题"><a href="#浮点数的判断问题" class="headerlink" title="浮点数的判断问题"></a>浮点数的判断问题</h6><p>浮点数不能直接用等号进行判断（这个问题C语言也要注意的吧，不过本人已经忘记是否遇到过了…）。用相减之后等于0来判断。</p>
+<h6 id="new与delete"><a href="#new与delete" class="headerlink" title="new与delete"></a>new与delete</h6><p>这个感觉有点像C语言里的动态分配内存并释放的情况。特别记录一下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">new 变量类型(初始化值) 分配一个大小的内存空间，并用括号里的值来初始化这个变量。</span><br><span class="line">new 变量类型[n] 分配n个大小的内存空间</span><br><span class="line">举个例子：</span><br><span class="line">char *p = new char[6];</span><br><span class="line">strcpy(p, &quot;Hello&quot;);</span><br><span class="line"></span><br><span class="line">一点特别的：</span><br><span class="line">用new定义多维数组变量的时候，它产生了一个指向数组第一个元素的指针，返回类型包括了除最左边维数以外的所有维数。好像也不难理解，就当一个存储了多维向量的一维数组好了吧。</span><br><span class="line"></span><br><span class="line">另外new还能创建对象，同样也是需要有对象指针来接收的。此部分可能就属于超纲部分了叭...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>new创建的指针需要delete来释放，也就是说它们俩一定是成双成对的。和C语言的malloc与free真的很像~</p>
+<h2 id="c-面向对象"><a href="#c-面向对象" class="headerlink" title="c++ 面向对象"></a>c++ 面向对象</h2><p><a target="_blank" rel="noopener" href="https://www.runoob.com/cplusplus/cpp-classes-objects.html">参考教程</a></p>
+<h4 id="类-amp-对象"><a href="#类-amp-对象" class="headerlink" title="类&amp;对象"></a>类&amp;对象</h4><h6 id="C-类的定义"><a href="#C-类的定义" class="headerlink" title="C++类的定义"></a>C++类的定义</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class classname*类名*</span><br><span class="line">&#123;</span><br><span class="line">	private/public/protected: *访问修饰符*</span><br><span class="line">		double length；*变量*</span><br><span class="line">		Member functions()&#123;&#125;*方法*</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>public是可以在外部访问的，private是只能内部访问；如果不明确写，默认创建为private变量。</p>
+<h6 id="对象的定义"><a href="#对象的定义" class="headerlink" title="对象的定义"></a>对象的定义</h6><p>根据类来创建，类似于普通变量的声明。</p>
+<p>.号可以访问对象的公共数据成员。</p>
+<p>TBC</p>
+<h2 id="C-高级教程"><a href="#C-高级教程" class="headerlink" title="C++ 高级教程"></a>C++ 高级教程</h2><h4 id="文件和流"><a href="#文件和流" class="headerlink" title="文件和流"></a><strong>文件和流</strong></h4><h4 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h4><h4 id="动态内存"><a href="#动态内存" class="headerlink" title="动态内存"></a>动态内存</h4><h4 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a><strong>命名空间</strong></h4><h4 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h4><h4 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a><strong>多线程</strong></h4>
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>本文作者：</strong>ShellyWu
+        </p>
+        <p>
+            <strong>
+                本文链接：
+            </strong>
+            <a href="http://wuyn20.github.io/2022/11/07/Cpp%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BC%96%E7%A8%8B/">http://wuyn20.github.io/2022/11/07/Cpp%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BC%96%E7%A8%8B/</a>
+        </p>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>更新于 2022-11-08</p></div> 
+    <div class="post-entry__tags"></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2022/11/11/draft/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            上一篇
+                        </div>
+                        <div class="nav__title">
+                            随想
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/11/07/%E7%A4%BE%E4%BC%9A%E5%85%AC%E5%B9%B3%E4%B8%8E%E6%9C%BA%E4%BC%9A%E5%B9%B3%E7%AD%89/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            下一篇
+                        </div>
+                        <div class="nav__title">
+                            社会公平与机会平等
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+    <div class="post__comments post__with-toc content-card" id="comment">
+        
+    <h4>评论</h4>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div id="SOHUCS" sid="2022/11/07/Cpp面向对象的编程/"></div>
+
+    
+    
+
+
+    </div>
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2022&nbsp;-&nbsp;2022 <a href="/">一喵之言</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "33f8665fe90948adb3474c3d1437c3b5"}'>
+</script>
+<!-- End Cloudflare Web Analytics -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('false'),
+            auto_fancybox = Boolean('true')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+    
+
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script>
+        function loadComment() {
+            (function(){
+                var appid = 'cywkggnQP';
+                var conf = '376b1244a9947c276b9c9d9e3f955b59';
+                var width = window.innerWidth || document.documentElement.clientWidth;
+                if (width < 960) {
+                    window.document.write('<script id="changyan_mobile_js" charset="utf-8" defer crossorigin="anonymous" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+                } else {
+                    var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if (typeof a==="function"){if (window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if (e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})});
+                }
+            })();
+        }
+    
+        var runningOnBrowser = typeof window !== "undefined";
+        var isBot = runningOnBrowser && !("onscroll" in window) || typeof navigator !== "undefined" && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent);
+        var supportsIntersectionObserver = runningOnBrowser && "IntersectionObserver" in window;
+    
+        setTimeout(function () {
+            if (!isBot && supportsIntersectionObserver) {
+                var comment_observer = new IntersectionObserver(function(entries) {
+                    if (entries[0].isIntersecting) {
+                        loadComment();
+                        comment_observer.disconnect();
+                    }
+                }, { threshold: [0] });
+                comment_observer.observe(document.getElementById('comment'));
+            } else {
+                loadComment();
+            }
+        }, 1);
+    </script>
+
+
+    
+    
+    
+
+
+
+    </body>
+</html>
